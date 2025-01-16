@@ -78,21 +78,26 @@
         codes.forEach((code, index) => {
             code.addEventListener('input', () => {
                 if (code.value.length === 1 && index < codes.length - 1) {
-                    codes[index + 1].focus();
+                    setTimeout(() => codes[index + 1].focus(), 10);
                 }
             });
 
             code.addEventListener('keydown', (e) => {
                 if (e.key === 'Backspace') {
                     if (code.value === '' && index > 0) {
-                        codes[index - 1].focus();
+                        setTimeout(() => codes[index - 1].focus(), 10);
                     }
                 }
             });
 
             code.addEventListener('focus', () => {
-                code.select();
+                setTimeout(() => code.select(), 10);
             });
+        });
+
+        // Focus the first input field when the page loads
+        window.addEventListener('DOMContentLoaded', () => {
+            codes[0].focus();
         });
     </script>
 </body>
